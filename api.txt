@@ -1,0 +1,4 @@
+Application name 	platzimusic
+API key 	f6f87b9b01085660dc189b1fdb4cd4b8
+Shared secret 	42e67fea0ad9355a63ac8acc54d65d02
+Registered to 	anth0nieto
