@@ -1,9 +1,12 @@
 import React from 'react';
-import { StyleSheet, View, ListView } from 'react-native';
+import { StyleSheet, View, ListView, TouchableOpacity } from 'react-native';
 
 import ArtistBox from './ArtistBox';
+import { RootStack } from './../config/router'; 
+import { withNavigation } from 'react-navigation'; 
 
-export default class ArtistList extends React.Component {
+
+class ArtistList extends React.Component {
 
   constructor(props) {
     super(props);
@@ -12,6 +15,7 @@ export default class ArtistList extends React.Component {
     this.state = {
       dataSource: ds
     };
+
   }
 
   componentDidMount(){
@@ -30,13 +34,23 @@ export default class ArtistList extends React.Component {
       })
   }
 
+ 
   render() {
+
+    
     return (
 
       <ListView
         enableEmptySections
         dataSource={this.state.dataSource}
-        renderRow={(artist) => <ArtistBox artist={artist}/>}
+        renderRow={(artist) => {
+            return (
+                <TouchableOpacity
+                  onPress={() => this.props.navigation.navigate('Details', { artist })}> 
+                  <ArtistBox artist={artist}/>
+                </TouchableOpacity>)
+          }
+        }
       />
     );
   }
@@ -45,3 +59,6 @@ export default class ArtistList extends React.Component {
 const styles = StyleSheet.create({
 
 });
+
+export default withNavigation(ArtistList);
+
